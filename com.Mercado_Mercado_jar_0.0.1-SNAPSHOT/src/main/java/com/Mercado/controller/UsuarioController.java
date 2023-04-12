@@ -96,4 +96,5 @@ public class UsuarioController {
         model.addAttribute("usuarios", usuario);
         return "usuario/Perfil";
     }
+    
 }
