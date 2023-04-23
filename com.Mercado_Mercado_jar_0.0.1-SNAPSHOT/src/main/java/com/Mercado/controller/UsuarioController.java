@@ -1,9 +1,11 @@
 
 package com.Mercado.controller;
 
+import com.Mercado.entity.Consultas;
 import com.Mercado.entity.Orden;
 import com.Mercado.entity.Producto;
 import com.Mercado.entity.Usuario;
+import com.Mercado.service.IConsultaService;
 import com.Mercado.service.IOrdenService;
 import com.Mercado.service.IUsuarioService;
 import java.io.IOException;
@@ -19,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +35,8 @@ public class UsuarioController {
     private IUsuarioService usuarioservice;
     @Autowired
     private IOrdenService ordenservice;
-    
+    @Autowired
+    private IConsultaService consultaservice;
     
     @GetMapping("/registro")
     public String crear(){
@@ -97,4 +101,16 @@ public class UsuarioController {
         return "usuario/Perfil";
     }
     
+    @GetMapping("/consulta")
+    public String crear(Model model){
+         model.addAttribute("consulta", new Consultas());      
+        return "usuario/Consultas";
+    }
+    @PostMapping("/saveConsulta")
+     public String saveConsultas( Consultas consultas,HttpSession session){
+       Usuario u= usuarioservice.findById(Integer.parseInt(session.getAttribute("idusuario").toString()));
+        consultas.setUsuario(u);
+      consultaservice.save(consultas);
+      return "redirect:/";
+   }
 }

@@ -2,7 +2,7 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Usuarios</title>
+        <title>Lista de Consultas</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >     
@@ -10,32 +10,29 @@
     </head>
     <body>
         <div class="container">
-                  <header th:include="administrador/templatesA.html::header"></header>
-            
-            <table class="table align-middle mb-0 bg-white" style="margin-top: 90px;">
+               <header th:include="administrador/templatesA.html::header"></header>
+                <table class="table align-middle mb-0 bg-white" style="margin-top: 90px;">
                 <thead class="bg-light">
                     <tr>
                         <th>Nombre</th>
-                        <th>Direccion</th>
+                        <th>Consulta</th>
+                        <th>Satisfacción</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="u:${usuarios}" >
+                    <tr th:each="c:${consultas}" >
                         <td>
                             <div class="d-flex align-items-center">
                                 <div class="ms-3">
-                                    <p th:text="${u.nombre}"  class="fw-bold mb-1"></p>
-                                    <p th:text="${u.email}"  class="text-muted mb-0"></p>
+                                   <p th:text="${c.getUsuario.getNombre}" class="fw-bold mb-1"></p>     
                                 </div>
                             </div>
                         </td>
-                        <td>
-                            <p th:text="${u.direccion}"class="fw-normal mb-1">Dirección</p>
-                        </td>
+                        <td th:text="${c.descripcion}"class="fw-normal mb-1" ></td>
+                        <td th:text="${c.satisfaccion}"class="fw-normal mb-1"></td>
                     </tr>
                 </tbody>
             </table>
-                  
         </div>
           <footer th:replace="administrador/templatesA::footer"></footer>    
     </body>

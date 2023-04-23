@@ -93,12 +93,7 @@ public class DetalleOrden {
         this.producto = producto;
     }
     
-    
-
-    @Override
-    public String toString() {
-        return "DetalleOrden{" + "id=" + id + ", nombre=" + nombre + ", cantidad=" + cantidad + ", precio=" + precio + ", total=" + total + '}';
-    }
+   
 
     
 }

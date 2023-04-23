@@ -33,6 +33,9 @@ public class Usuario {
     @OneToMany(mappedBy="usuario")
     private List<Orden> ordenes;
     
+    @OneToMany(mappedBy="usuario")
+    private List<Consultas> consultas;
+    
     public Usuario() {
     }
 
@@ -137,6 +140,14 @@ public class Usuario {
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public List<Consultas> getConsultas() {
+        return consultas;
+    }
+
+    public void setConsultas(List<Consultas> consultas) {
+        this.consultas = consultas;
     }
    
      

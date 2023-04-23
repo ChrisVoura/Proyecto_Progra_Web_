@@ -2,6 +2,7 @@
 package com.Mercado.controller;
 
 import com.Mercado.entity.Producto;
+import com.Mercado.service.IConsultaService;
 import com.Mercado.service.IProductoService;
 import com.Mercado.service.IUsuarioService;
 import java.util.List;
@@ -18,6 +19,8 @@ public class AdministradorController {
     private IProductoService productoservice;
     @Autowired
     private IUsuarioService usuarioservice;
+    @Autowired
+    private IConsultaService consultaservice;
     @GetMapping("")
     public String home(Model model){
         List<Producto> productos= productoservice.findAll();
@@ -28,5 +31,10 @@ public class AdministradorController {
     public String getuser(Model model){
         model.addAttribute("usuarios", usuarioservice.findAll());
         return "administrador/usuarios";
+    }
+    @GetMapping("/usuariosC")
+    public String getConsulta(Model model){
+        model.addAttribute("consultas", consultaservice.findAll());
+        return "administrador/usuariosC";
     }
 }
